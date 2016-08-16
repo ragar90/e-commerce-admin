@@ -4,7 +4,7 @@
   <!-- Left side column. contains the logo and sidebar -->
   <side-bar></side-bar>
 
-  <!-- Content Wrapper. Contains categories content -->
+  <!-- Content Wrapper. Contains users content -->
   <div class="content-wrapper">
     <!-- Content Header (Category header) -->
     <section class="content-header">
@@ -33,27 +33,38 @@
                 <thead>
                   <tr>
                     <th>S.No</th>
-                    <th>Category Name</th>
-                    <th>Description</th>
+                    <th>User Name</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                    <th>User Type</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr ng-repeat="category in Ctrl.categories">
+                  <tr ng-repeat="user in Ctrl.users">
                     <td>{{$index+1}}</td>
-                    <td>{{category.name}}</td>
-                    <td>{{category.description}}</td>
+                    <td>{{user.name}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.status == 1 ? "Active" : "Inactive"}}</td>
                     <td>
-                      <edit-button href="#/categories/{{category._id}}" title="Edit Category"></edit-button>
-                      <delete-button ng-click="Ctrl.remove(category._id, $index)" title="Delete Category"></delete-button>
+                      <b ng-repeat="role in user.roles">{{role}}{{$last ? '' : ', '}}</b>
+                    </td>
+                    <td>
+                      <edit-button href="#/users/{{user._id}}" title="Edit User"></edit-button>
+                      <a href="javascript:void(0)" ng-click="Ctrl.updateStatus(user._id, !user.status, $index)" title="Update User">
+                        <i class="fa fa-arrow-up"></i>
+                      </a>
+                      <delete-button ng-click="Ctrl.remove(user._id, $index)" title="Delete User"></delete-button>
                     </td>
                   </tr>
                 </tbody>
                 <tfoot>
                   <tr>
                     <th>S.No</th>
-                    <th>Category Name</th>
-                    <th>Description</th>
+                    <th>User Name</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                    <th>User Type</th>
                     <th>Action</th>
                   </tr>
                 </tfoot>

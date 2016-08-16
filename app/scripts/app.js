@@ -17,7 +17,8 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'ngFileUpload'
   ])
   .constant({
     'endpoint': "http://localhost:3000/api/v1"//'http://ecommerce.provenlogic.xyz/api/v1'
@@ -99,6 +100,21 @@ angular
       .when('/add-categories', {
         templateUrl: 'views/categories-edit.html',
         controller: 'CategoriesAddCtrl',
+        controllerAs: 'Ctrl'
+      })
+      .when('/users', {
+        templateUrl: 'views/users.html',
+        controller: 'UsersCtrl',
+        controllerAs: 'Ctrl'
+      })
+      .when('/add-users', {
+        templateUrl: 'views/users-edit.html',
+        controller: 'UsersAddCtrl',
+        controllerAs: 'Ctrl'
+      })
+      .when('/users/:id', {
+        templateUrl: 'views/users-edit.html',
+        controller: 'UsersEditCtrl',
         controllerAs: 'Ctrl'
       })
       .otherwise({
