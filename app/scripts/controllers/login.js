@@ -14,6 +14,7 @@ angular.module('eCommerceAdminApp')
       var Admin = new AdminAuth(_this.login);
       Admin.$login().then(function(data) {
         if(data.status == "success") {
+          alert(data.response.token)
           sessionService.set('token', data.response.token);
           sessionService.set('user', JSON.stringify(data.response));
           $location.path("/");

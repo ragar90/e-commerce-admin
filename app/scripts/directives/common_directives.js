@@ -147,6 +147,23 @@ angular.module('eCommerceAdminApp')
       replace: true
     };
   })
+  .directive('dataTable', function($timeout) {
+    return {
+      restrict: "A",
+      link: function(scope, elem, attr) {
+        elem.bind("onFinishRender", function() {
+          $(elem).DataTable({
+            "paging": true,
+            "lengthChange": true,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false
+          });
+        });
+      }
+    };
+  })
   .directive('ckEditor', function() {
     return {
       require: '?ngModel',
@@ -156,7 +173,6 @@ angular.module('eCommerceAdminApp')
         ck.on('instanceReady', function() {
           ck.setData(ngModel.$viewValue);
         });
-
         function updateModel() {
           scope.$apply(function() {
             ngModel.$setViewValue(ck.getData());
