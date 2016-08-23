@@ -18,10 +18,11 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'ngFileUpload'
+    'ngFileUpload',
+    'angular.filter'
   ])
   .constant({
-    'endpoint': 'http://ecommerce.provenlogic.xyz/api/v1'//"http://localhost:3000/api/v1"//'http://ecommerce.provenlogic.xyz/api/v1'
+    'endpoint': 'http://localhost:3000/api/v1'//"http://localhost:3000/api/v1"//'http://ecommerce.provenlogic.xyz/api/v1'
   })
   .config(function($routeProvider) {
     $routeProvider
@@ -115,6 +116,16 @@ angular
       .when('/users/:id', {
         templateUrl: 'views/users-edit.html',
         controller: 'UsersEditCtrl',
+        controllerAs: 'Ctrl'
+      })
+      .when('/configuration', {
+        templateUrl: 'views/site-configuration.html',
+        controller: 'SiteConfigurationCtrl',
+        controllerAs: 'Ctrl'
+      })
+      .when('/home-page-configuration', {
+        templateUrl: 'views/home-page-configuration.html',
+        controller: 'HomePageConfigurationCtrl',
         controllerAs: 'Ctrl'
       })
       .otherwise({
