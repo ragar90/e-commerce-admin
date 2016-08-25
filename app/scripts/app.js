@@ -128,6 +128,21 @@ angular
         controller: 'HomePageConfigurationCtrl',
         controllerAs: 'Ctrl'
       })
+      .when('/orders', {
+        templateUrl: 'views/orders.html',
+        controller: 'OrdersCtrl',
+        controllerAs: 'Ctrl'
+      })
+      .when('/finance', {
+        templateUrl: 'views/finance.html',
+        controller: 'FinanceCtrl',
+        controllerAs: 'Ctrl'
+      })
+      .when('/finance/:id', {
+        templateUrl: 'views/finance-single.html',
+        controller: 'FinanceSingleCtrl',
+        controllerAs: 'Ctrl'
+      })
       .otherwise({
         redirectTo: '/login'
       });
