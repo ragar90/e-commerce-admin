@@ -39,9 +39,17 @@
                     <th>User Type</th>
                     <th>Action</th>
                   </tr>
+                  <tr>
+                    <td></td>
+                    <td><input type="text" class="form-control" ng-model="Ctrl.search.name"></td>
+                    <td><input type="text" class="form-control" ng-model="Ctrl.search.email"></td>
+                    <td><input type="text" class="form-control" ng-model="Ctrl.search.status"></td>
+                    <td><input type="text" class="form-control" ng-model="Ctrl.search.roles"></td>
+                    <td></td>
+                  </tr>
                 </thead>
                 <tbody>
-                  <tr ng-repeat="user in Ctrl.users">
+                  <tr ng-repeat="user in Ctrl.users | filter:Ctrl.search">
                     <td>{{$index+1}}</td>
                     <td>{{user.name}}</td>
                     <td>{{user.email}}</td>
