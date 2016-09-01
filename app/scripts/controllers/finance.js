@@ -35,7 +35,6 @@ angular.module('eCommerceAdminApp')
     var _this = this;
     _this.title = "View Detail";
     _this.payAmount = function () {
-      console.log(_this.pay)
       Finance.payAmount({
         id: $routeParams.id
       }, _this.pay, function(data) {

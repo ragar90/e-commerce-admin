@@ -22,7 +22,7 @@ angular
     'angular.filter'
   ])
   .constant({
-    'endpoint': 'http://localhost:3000/api/v1'//"http://localhost:3000/api/v1"//'http://ecommerce.provenlogic.xyz/api/v1'
+    'endpoint': 'http://ecommerce.provenlogic.xyz/api/v1'//"http://localhost:3000/api/v1"//'http://ecommerce.provenlogic.xyz/api/v1'
   })
   .config(function($routeProvider) {
     $routeProvider

@@ -137,7 +137,35 @@ angular.module('eCommerceAdminApp')
         _this.configuration.units.push(_this.units);
       _this.units = "";
     };
-
+    _this.imageUpload = function(file, name) {
+      Upload.upload({
+        url: endpoint + '/images/upload-single-image',
+        data: {
+          image: file
+        }
+      }).then(function(resp) {
+        var data = resp.data;
+        if (data.status == "success") {
+          _this.configuration[name] = data.response;
+        } else {
+          _this.notify = {
+            message: data.statusMessage,
+            status: data.status,
+            type: "danger"
+          }
+        }
+      }, function(resp) {
+        var data = resp.data;
+        _this.notify = {
+          message: data.statusMessage,
+          status: data.status,
+          type: "danger"
+        }
+      }, function(evt) {
+        var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+        _this[name + "ProgressPercentage"] = progressPercentage;
+      });
+    };
     _this.removeShipsIn = function(index) {
       _this.configuration.ships_in.splice(index, 1);
     };
@@ -147,7 +175,8 @@ angular.module('eCommerceAdminApp')
       _this.ships_in = "";
     };
     _this.saveConfiguration = function() {
-      siteConfiguration.saveConfiguration({}, _this.configuration, function(data) {
+      var configuration = angular.copy(_this.configuration);
+      siteConfiguration.saveConfiguration({}, configuration, function(data) {
         if (data.status == "success") {
           _this.notify = {
             message: data.statusMessage,

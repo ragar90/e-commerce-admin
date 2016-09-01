@@ -35,6 +35,7 @@
                     <th>Product Name</th>
                     <th>SKU</th>
                     <th>Quantity</th>
+                    <th>Product Status</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -43,8 +44,12 @@
                     <td>{{product.title}}</td>
                     <td>{{product.sku}}</td>
                     <td>{{product.quantity}}</td>
+                    <td>{{product.status == 1 ? "Active" : "Inactive"}}</td>
                     <td>
                       <edit-button href="#/product/{{product._id}}" title="Edit Product"></edit-button>
+                      <a href="javascript:void(0)" ng-click="ProdC.updateStatus(product._id, !product.status, $index)" title="Update Product Status">
+                        <i class="fa fa-arrow-up"></i>
+                      </a>
                       <view-button href="#/product/view/{{product._id}}" title="View Product"></view-button>
                     </td>
                   </tr>
@@ -54,6 +59,7 @@
                     <th>Product Name</th>
                     <th>SKU</th>
                     <th>Quantity</th>
+                    <th>Product Status</th>
                     <th>Action</th>
                   </tr>
                 </tfoot>
