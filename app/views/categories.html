@@ -34,6 +34,7 @@
                   <tr>
                     <th>S.No</th>
                     <th>Category Name</th>
+                    <th>Parent Category</th>
                     <th>Description</th>
                     <th>Action</th>
                   </tr>
@@ -42,9 +43,11 @@
                   <tr ng-repeat="category in Ctrl.categories">
                     <td>{{$index+1}}</td>
                     <td>{{category.name}}</td>
+                    <td>{{category.parent_id.name}}</td>
                     <td>{{category.description}}</td>
                     <td>
-                      <edit-button href="#/categories/{{category._id}}" title="Edit Category"></edit-button>
+                      <edit-button ng-if="category.parent_id == null" href="#/categories/{{category._id}}" title="Edit Category"></edit-button>
+                      <edit-button ng-if="category.parent_id !==null " href="#/edit-sub-categories/{{category._id}}" title="Edit Category"></edit-button>
                       <delete-button ng-click="Ctrl.remove(category._id, $index)" title="Delete Category"></delete-button>
                     </td>
                   </tr>
@@ -53,6 +56,7 @@
                   <tr>
                     <th>S.No</th>
                     <th>Category Name</th>
+                    <th>Parent Category</th>
                     <th>Description</th>
                     <th>Action</th>
                   </tr>

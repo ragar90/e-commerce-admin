@@ -22,7 +22,7 @@ angular
     'angular.filter'
   ])
   .constant({
-    'endpoint': 'http://ecommerce.provenlogic.xyz/api/v1'//"http://localhost:3000/api/v1"//'http://ecommerce.provenlogic.xyz/api/v1'
+    'endpoint': "http://45.55.165.182:3000/api/v1"//'http://45.55.165.182:3000/api/v1'//'http://ecommerce.provenlogic.xyz/api/v1'//"http://localhost:3000/api/v1"//'http://ecommerce.provenlogic.xyz/api/v1'
   })
   .config(function($routeProvider) {
     $routeProvider
@@ -98,8 +98,18 @@ angular
         controller: 'CategoriesEditCtrl',
         controllerAs: 'Ctrl'
       })
+      .when('/edit-sub-categories/:id', {
+        templateUrl: 'views/sub-categories-edit.html',
+        controller: 'CategoriesEditCtrl',
+        controllerAs: 'Ctrl'
+      })
       .when('/add-categories', {
         templateUrl: 'views/categories-edit.html',
+        controller: 'CategoriesAddCtrl',
+        controllerAs: 'Ctrl'
+      })
+      .when('/add-sub-categories', {
+        templateUrl: 'views/sub-categories-edit.html',
         controller: 'CategoriesAddCtrl',
         controllerAs: 'Ctrl'
       })
@@ -116,6 +126,16 @@ angular
       .when('/users/:id', {
         templateUrl: 'views/users-edit.html',
         controller: 'UsersEditCtrl',
+        controllerAs: 'Ctrl'
+      })
+      .when('/profile/:id', {
+        templateUrl: 'views/profile.html',
+        controller: 'ProfileEditCtrl',
+        controllerAs: 'Ctrl'
+      })
+      .when('/change-password', {
+        templateUrl: 'views/change-password.html',
+        controller: 'ChangePasswordCtrl',
         controllerAs: 'Ctrl'
       })
       .when('/configuration', {

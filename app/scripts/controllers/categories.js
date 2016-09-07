@@ -11,7 +11,7 @@ angular.module('eCommerceAdminApp')
   .controller('CategoriesCtrl', ["Category", function (Category) {
     var _this = this;
     _this.title = "View Categories";
-    Category.getApprovedCategories.get(function(data) {
+    Category.getAllCategories({}, {},function(data) {
       if(data.status == "success") {
         _this.categories = data.response.categories;
       }
@@ -30,7 +30,7 @@ angular.module('eCommerceAdminApp')
       }
     });
     _this.remove = function (id, index) {
-      Category.deleteSingle.remove({id:id}, {}, function(data) {
+      Category.deleteSingle({id:id}, {}, function(data) {
         if(data.status == "success") {
           _this.notify = {
             message: "Deleted Succesfully",

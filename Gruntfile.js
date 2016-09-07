@@ -307,15 +307,15 @@ module.exports = function (grunt) {
     // By default, your `index.html`'s <!-- Usemin block --> will take care of
     // minification. These next options are pre-configured if you do not wish
     // to use the Usemin blocks.
-    cssmin: {
-      dist: {
-        files: {
-          src: ['./dist/**/*.css', '!./dist/**/*.min.css'],
-          dest: 'dist/',
-          ext: '.min.css'
-        }
-      }
-    },
+    // cssmin: {
+    //   dist: {
+    //     files: {
+    //       src: ['./dist/**/*.css', '!./dist/**/*.min.css'],
+    //       dest: 'dist/',
+    //       ext: '.min.css'
+    //     }
+    //   }
+    // },
     uglify: {
       dist: {
         build: {
@@ -327,9 +327,12 @@ module.exports = function (grunt) {
         }
       }
     },
-    // concat: {
-    //   dist: {}
-    // },
+    concat: {
+      dist: {
+        src: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
+        dest: '<%= yeoman.app %>/<%= yeoman.dist %>/js/built.js',
+      }
+    },
 
     imagemin: {
       dist: {
@@ -473,9 +476,9 @@ module.exports = function (grunt) {
       'wiredep',
       'concurrent:server',
       'postcss:server',
+      'concat',
       'connect:livereload',
-      'watch',
-      'uglify'
+      'watch'
     ]);
   });
 

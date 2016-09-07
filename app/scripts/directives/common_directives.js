@@ -10,10 +10,12 @@ angular.module('eCommerceAdminApp')
   .directive('userName', function() {
     return {
       templateUrl: 'partials/headerbar.html',
-      restrict: 'E'
+      restrict: 'E',
+      controller: "CommonCtrl",
+      controllerAs: 'CC'
     };
   })
-  .directive('notificationBar', function() {
+  .directive('notificationBar', ["$timeout", function($timeout) {
     var template = "<div class='alert alert-{{alertData.type}}'" +
       "ng-show='alertData.message'" +
       "role='alert' data-notification='{{alertData.status}}'>" +
@@ -25,9 +27,18 @@ angular.module('eCommerceAdminApp')
       scope: {
         alertData: "="
       },
-      replace: true
+      replace: true,
+      link: function(scope, element, attrs){
+        scope.$watch("scope.alertData", function(value) {
+          alert();
+          $timeout(function(){
+              scope.alertData = {};
+          }, 3000);
+      });
+
+     }
     };
-  })
+  }])
   .directive('onFinishRender', function($timeout) {
     return {
       restrict: 'A',

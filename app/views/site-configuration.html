@@ -37,10 +37,10 @@
               <div class="box-body">
                 <form-input label="Site Title" required name="title" model="Ctrl.configuration.title"></form-input>
                 <form-input label="Pricing Unit" required name="pricing_unit" model="Ctrl.configuration.pricing_unit"></form-input>
-                <form-input label="Seller Commission" required name="title" model="Ctrl.configuration.commission"></form-input>
-                <form-input label="Serivice Tax" required name="title" model="Ctrl.configuration.service_tax"></form-input>
+                <form-input label="Seller Commission" required name="commission" model="Ctrl.configuration.commission"></form-input>
+                <form-input label="Serivice Tax" required name="service_tax" model="Ctrl.configuration.service_tax"></form-input>
                 <form-input label="Email" required name="email" model="Ctrl.configuration.contact.email"></form-input>
-                <form-input label="Phone" required name="title" model="Ctrl.configuration.contact.phone"></form-input>
+                <form-input label="Phone" required name="phone" model="Ctrl.configuration.contact.phone"></form-input>
                 <div class="form-group">
                   <label for="address">Address</label>
                   <textarea class="form-control" placeholder="Address" ng-model="Ctrl.configuration.contact.address"></textarea>
@@ -58,7 +58,7 @@
                   </div>
                   <div class="col-md-12 padded" ng-repeat="val in Ctrl.configuration.ships_in | unique">
                     <div class="col-md-8">
-                      <input type="number" readonly="" class="form-control" min="1" ng-model="val" />
+                      <input type="text" readonly="" class="form-control" min="1" ng-model="val" />
                     </div>
                     <div class="col-md-4">
                       <label for="ships_in">&nbsp;</label>
@@ -95,7 +95,6 @@
                   <div class="btn btn-default" ng-model="file" ngf-select="Ctrl.imageUpload($file, 'site_logo')" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB" ngf-resize="{width: 1920, height: 800}">Site Logo</div>
                   <img src="{{Ctrl.configuration.site_logo.url}}" height="100" width="100"/>
                 </div>
-                {{Ctrl.configuration}}
               </div>
               <!-- /.box-body -->
 

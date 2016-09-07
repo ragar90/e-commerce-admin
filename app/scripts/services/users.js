@@ -16,6 +16,13 @@ angular.module('eCommerceAdminApp')
           "Authorization": sessionService.get("token")
         }
       },
+      changePassword: {
+        url: endpoint + "/users/change-password",
+        method: "PUT",
+        headers: {
+          "Authorization": sessionService.get("token")
+        }
+      },
       create: {
         method: "POST",
         headers: {

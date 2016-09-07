@@ -36,14 +36,6 @@
                 <form-input label="Email" required name="email" model="Ctrl.user.email"></form-input>
                 <form-input label="Phone" required name="phone" model="Ctrl.user.phone"></form-input>
                 <div class="form-group">
-                  <lable> Role </lable>
-                  <select class="form-control" ng-model="Ctrl.user.role">
-                    <option value="admin"> Admin</option>
-                    <option value="user"> User</option>
-                    <option value="seller"> Seller</option>
-                  </select>
-                </div>
-                <div class="form-group">
                   <lable> User Image </lable>
                   <div class="col-md-12">
                     <div class="col-md-6">
@@ -62,42 +54,6 @@
                     </div>
                   </div>
                 </div>
-                <div class="form-group" ng-if="Ctrl.user.roles.indexOf('seller') !== -1">
-                  <lable> Banner </lable>
-                  <div class="col-md-12">
-                    <div class="col-md-6">
-                      <div class="button btn btn-primary" ngf-select="Ctrl.imageUpload($file, 'banner')">Upload on file select</div>
-                      <p>&nbsp;</p>
-                      <div class="progress progress-sm active">
-                        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="{{Ctrl.bannerProgressPercentage}}" aria-valuemin="0" aria-valuemax="100" style="width: {{Ctrl.bannerProgressPercentage}}%">
-                          <span class="sr-only"></span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <img src="{{Ctrl.user.banner.url}}"  height="100" width="100"/>
-                      <input type="hidden" value="{{Ctrl.user.banner._id}}" ng-model="Ctrl.user.upload_banner" />
-                    </div>
-                  </div>
-                </div>
-                <div class="form-group" ng-if="Ctrl.user.roles.indexOf('seller') !== -1">
-                  <lable> Logo </lable>
-                  <div class="col-md-12">
-                    <div class="col-md-6">
-                      <div class="button btn btn-primary" ngf-select="Ctrl.imageUpload($file, 'logo')">Upload on file select</div>
-                      <p>&nbsp;</p>
-                      <div class="progress progress-sm active">
-                        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="{{Ctrl.logoProgressPercentage}}" aria-valuemin="0" aria-valuemax="100" style="width: {{Ctrl.logoProgressPercentage}}%">
-                          <span class="sr-only"></span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <img src="{{Ctrl.user.logo.url}}"   width="100" height="100"/>
-                      <input type="hidden" value="{{Ctrl.user.logo._id}}" ng-model="Ctrl.user.upload_logo" />
-                    </div>
-                  </div>
-                </div>
               <!-- /.box-body -->
 
               <div class="box-footer">
@@ -109,7 +65,6 @@
           <!-- /.box-body -->
 
 
-        </div>
 
         <!-- /.content -->
       </div>

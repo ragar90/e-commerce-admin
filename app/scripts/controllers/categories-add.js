@@ -14,10 +14,14 @@ angular.module('eCommerceAdminApp')
     "$location",
     "$routeParams",
     "sessionService",
-    function(Category, $scope, $location, $routeParams, sessionService) {
+    "Upload",
+    "endpoint",
+    function(Category, $scope, $location, $routeParams, sessionService, Upload, endpoint) {
       var _this = this;
       _this.title = "Add Categories";
-      Category.getApprovedCategories.get(function(data) {
+      _this.sub_title = "Add Sub Categories";
+      _this.category = {};
+      Category.getApprovedCategories({}, {}, function(data) {
         if (data.status == "success") {
           _this.categories = data.response.categories;
         } else {
@@ -34,12 +38,11 @@ angular.module('eCommerceAdminApp')
           type: "danger"
         }
       });
-      _this.saveCategory = function() {
 
-        var addSingle = Category.addSingle;
-        addSingle = new addSingle(_this.category);
-        addSingle.$create(function(data) {
+      _this.saveCategory = function() {
+        Category.addSingle({}, _this.category, function(data) {
           if (data.status == "success") {
+            _this.category = {};
             _this.notify = {
               message: "Created Successfully",
               status: data.status,
@@ -60,4 +63,33 @@ angular.module('eCommerceAdminApp')
           }
         })
       }
+      _this.imageUpload = function(file, name) {
+        Upload.upload({
+          url: endpoint + '/images/upload-single-image',
+          data: {
+            image: file
+          }
+        }).then(function(resp) {
+          var data = resp.data;
+          if (data.status == "success") {
+            _this[name].image = data.response;
+          } else {
+            _this.notify = {
+              message: data.statusMessage,
+              status: data.status,
+              type: "danger"
+            }
+          }
+        }, function(resp) {
+          var data = resp.data;
+          _this.notify = {
+            message: data.statusMessage,
+            status: data.status,
+            type: "danger"
+          }
+        }, function(evt) {
+          var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+          _this[name + "ProgressPercentage"] = progressPercentage;
+        });
+      };
     }]);
