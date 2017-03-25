@@ -3,6 +3,12 @@
   <header-bar></header-bar>
   <!-- Left side column. contains the logo and sidebar -->
   <side-bar></side-bar>
+  <style>
+    .box-body
+    {
+      overflow-x:scroll;
+    }
+  </style>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -25,6 +31,7 @@
           <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">{{Ctrl.title}}</h3>
+              <h5>All your Order Details will be displayed here.</h5>
               <div class="pull-right box-tools">
                 <button type="button" class="btn btn-primary btn-sm pull-right" data-widget="collapse" data-toggle="tooltip" title="" style="margin-right: 5px;" data-original-title="Collapse">
                   <i class="fa fa-minus"></i></button>
@@ -37,35 +44,53 @@
                 <thead>
                   <tr>
                     <td>Order ID</td>
+                    <td>User Email</td>
+                    <td>Payment Date</td>
+                    <td>Transaction Id</td>
                     <td>Seller Name</td>
-                    <td>Products Name</td>
+
                     <td>Bought Qty</td>
                     <td>Bought Price</td>
+                    <td>Payment Type</td>
+                    <td>Status</td>
                   </tr>
                   <tr>
                     <td><input type="text" ng-model="Ctrl.search._id._id"></td>
+                    <td><input type="text" ng-model="Ctrl.search.user.email"></td>
+                    <td><input type="text" ng-model="Ctrl.search.created_at"></td>
+                    <td><input type="text" ng-model="Ctrl.search.payment.transaction_id"></td>
                     <td><input type="text" ng-model="Ctrl.search.seller.name"></td>
-                    <td><input type="text" ng-model="Ctrl.search.product.name"></td>
                     <td><input type="text" ng-model="Ctrl.search.total_qty"></td>
                     <td><input type="text" ng-model="Ctrl.search.total_price"></td>
+                    <td><input type="text" ng-model="Ctrl.search.payment.method"></td>
+                    <td><input type="text" ng-model="Ctrl.search.product_status"></td>
                   </tr>
                 </thead>
                 <tbody>
                   <tr ng-repeat="order in Ctrl.orders | filter:Ctrl.search">
                     <td>{{order._id._id}}</td>
+                    <td>{{order.user.email}}</td>
+                    <td><p ng-bind="order.created_at | date:'MM/dd/yyyy HH:mm:ss'"></p></td>
+                    <td>{{order.payment.transaction_id}}</td>
                     <td>{{order.seller.name}}</td>
-                    <td><p ng-repeat="prod in order.product">{{prod.name}} {{prod.status}}</p></td>
+
                     <td>{{order.total_qty}}</td>
                     <td>{{order.total_price}}</td>
+                    <td>{{order.payment.method}}</td>
+                    <td>{{order.product_status}}</td>
                   </tr>
                 </tbody>
                 <tfoot>
                   <tr>
                     <td>Order ID</td>
+                    <td>User Email</td>
+                    <td>Payment Date</td>
+                    <td>Transaction Id</td>
                     <td>Seller Name</td>
-                    <td>Prodcuts Name</td>
                     <td>Bought Qty</td>
                     <td>Bought Price</td>
+                    <td>Payment Type</td>
+                    <td>Status</td>
                   </tr>
                 </tfoot>
               </table>

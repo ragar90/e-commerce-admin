@@ -8,16 +8,16 @@
  * Factory in the eCommerceAdminApp.
  */
 angular.module('eCommerceAdminApp')
-  .factory('sessionService', function() {
+  .factory('sessionService', ['$cookieStore', function($cookieStore) {
     return {
       set: function(key, value) {
-        return sessionStorage.setItem(key, value);
+        return $cookieStore.put(key, value);
       },
       get: function(key) {
-        return sessionStorage.getItem(key);
+        return $cookieStore.get(key);
       },
       destroy: function(key) {
-        return sessionStorage.removeItem(key);
+        return $cookieStore.remove(key);
       }
     };
-  })
+  }])

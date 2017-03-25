@@ -28,15 +28,15 @@ angular.module('eCommerceAdminApp')
         alertData: "="
       },
       replace: true,
-      link: function(scope, element, attrs){
-        scope.$watch("scope.alertData", function(value) {
-          alert();
-          $timeout(function(){
+      link: function(scope, element, attrs) {
+        scope.$watch("alertData", function(nValue) {
+          if(nValue && nValue.message != "") {
+            $timeout(function() {
               scope.alertData = {};
-          }, 3000);
-      });
-
-     }
+            }, 2000);
+          }
+        });
+      }
     };
   }])
   .directive('onFinishRender', function($timeout) {
@@ -184,6 +184,7 @@ angular.module('eCommerceAdminApp')
         ck.on('instanceReady', function() {
           ck.setData(ngModel.$viewValue);
         });
+
         function updateModel() {
           scope.$apply(function() {
             ngModel.$setViewValue(ck.getData());

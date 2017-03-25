@@ -40,7 +40,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr ng-repeat="category in Ctrl.categories">
+                  <tr ng-repeat="category in Ctrl.categories" on-finish-render="ngRepeatFinished">
                     <td>{{$index+1}}</td>
                     <td>{{category.name}}</td>
                     <td>{{category.parent_id.name}}</td>

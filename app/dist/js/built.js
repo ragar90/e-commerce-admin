@@ -46,122 +46,158 @@ angular
       .when('/product', {
         templateUrl: 'views/product.html',
         controller: 'ProductCtrl',
-        controllerAs: 'ProdC'
+        controllerAs: 'ProdC',
+        requireAuth: true
       })
       .when('/product/:id', {
         templateUrl: 'views/product-edit.html',
         controller: 'ProductEditCtrl',
-        controllerAs: 'ProdEdit'
+        controllerAs: 'ProdEdit',
+        requireAuth: true
       })
       .when('/product/view/:id', {
         templateUrl: 'views/product-view.html',
         controller: 'ProductViewCtrl',
-        controllerAs: 'ProdView'
+        controllerAs: 'ProdView',
+        requireAuth: true
       })
       .when('/pages', {
         templateUrl: 'views/pages.html',
         controller: 'PagesCtrl',
-        controllerAs: 'PagesCtrl'
+        controllerAs: 'PagesCtrl',
+        requireAuth: true
       })
       .when('/pages/:id', {
         templateUrl: 'views/pages-edit.html',
         controller: 'PagesEditCtrl',
-        controllerAs: 'PagesEdit'
+        controllerAs: 'PagesEdit',
+        requireAuth: true
       })
       .when('/add-pages', {
         templateUrl: 'views/pages-edit.html',
         controller: 'PagesAddCtrl',
-        controllerAs: 'PagesEdit'
+        controllerAs: 'PagesEdit',
+        requireAuth: true
       })
       .when('/emailtemplates', {
         templateUrl: 'views/emailtemplates.html',
         controller: 'EmailtemplatesCtrl',
-        controllerAs: 'Ctrl'
+        controllerAs: 'Ctrl',
+        requireAuth: true
       })
       .when('/emailtemplates/:id', {
         templateUrl: 'views/emailtemplates-edit.html',
         controller: 'EmailtemplatesEditCtrl',
-        controllerAs: 'Ctrl'
+        controllerAs: 'Ctrl',
+        requireAuth: true
       })
       .when('/add-emailtemplates', {
         templateUrl: 'views/emailtemplates-edit.html',
         controller: 'EmailtemplatesAddCtrl',
-        controllerAs: 'Ctrl'
+        controllerAs: 'Ctrl',
+        requireAuth: true
       })
       .when('/categories', {
         templateUrl: 'views/categories.html',
         controller: 'CategoriesCtrl',
-        controllerAs: 'Ctrl'
+        controllerAs: 'Ctrl',
+        requireAuth: true
       })
       .when('/categories/:id', {
         templateUrl: 'views/categories-edit.html',
         controller: 'CategoriesEditCtrl',
-        controllerAs: 'Ctrl'
+        controllerAs: 'Ctrl',
+        requireAuth: true
       })
       .when('/edit-sub-categories/:id', {
         templateUrl: 'views/sub-categories-edit.html',
         controller: 'CategoriesEditCtrl',
-        controllerAs: 'Ctrl'
+        controllerAs: 'Ctrl',
+        requireAuth: true
       })
       .when('/add-categories', {
         templateUrl: 'views/categories-edit.html',
         controller: 'CategoriesAddCtrl',
-        controllerAs: 'Ctrl'
+        controllerAs: 'Ctrl',
+        requireAuth: true
       })
       .when('/add-sub-categories', {
         templateUrl: 'views/sub-categories-edit.html',
         controller: 'CategoriesAddCtrl',
-        controllerAs: 'Ctrl'
+        controllerAs: 'Ctrl',
+        requireAuth: true
       })
       .when('/users', {
         templateUrl: 'views/users.html',
         controller: 'UsersCtrl',
-        controllerAs: 'Ctrl'
+        controllerAs: 'Ctrl',
+        requireAuth: true
       })
       .when('/add-users', {
         templateUrl: 'views/users-edit.html',
         controller: 'UsersAddCtrl',
-        controllerAs: 'Ctrl'
+        controllerAs: 'Ctrl',
+        requireAuth: true
       })
       .when('/users/:id', {
         templateUrl: 'views/users-edit.html',
         controller: 'UsersEditCtrl',
-        controllerAs: 'Ctrl'
+        controllerAs: 'Ctrl',
+        requireAuth: true
       })
       .when('/profile/:id', {
         templateUrl: 'views/profile.html',
         controller: 'ProfileEditCtrl',
-        controllerAs: 'Ctrl'
+        controllerAs: 'Ctrl',
+        requireAuth: true
       })
       .when('/change-password', {
         templateUrl: 'views/change-password.html',
         controller: 'ChangePasswordCtrl',
-        controllerAs: 'Ctrl'
+        controllerAs: 'Ctrl',
+        requireAuth: true
       })
       .when('/configuration', {
         templateUrl: 'views/site-configuration.html',
         controller: 'SiteConfigurationCtrl',
-        controllerAs: 'Ctrl'
+        controllerAs: 'Ctrl',
+        requireAuth: true
       })
-      .when('/home-page-configuration', {
-        templateUrl: 'views/home-page-configuration.html',
+      .when('/settings/main-banner', {
+        templateUrl: 'views/main-banner.html',
         controller: 'HomePageConfigurationCtrl',
-        controllerAs: 'Ctrl'
+        controllerAs: 'Ctrl',
+        requireAuth: true
+      })
+      .when('/settings/sub-banner', {
+        templateUrl: 'views/sub-banner.html',
+        controller: 'HomePageConfigurationCtrl',
+        controllerAs: 'Ctrl',
+        requireAuth: true
+      })
+      .when('/settings/home-page-images', {
+        templateUrl: 'views/home-page-images.html',
+        controller: 'HomePageConfigurationCtrl',
+        controllerAs: 'Ctrl',
+        requireAuth: true
       })
       .when('/orders', {
         templateUrl: 'views/orders.html',
         controller: 'OrdersCtrl',
-        controllerAs: 'Ctrl'
+        controllerAs: 'Ctrl',
+        requireAuth: true
       })
       .when('/finance', {
         templateUrl: 'views/finance.html',
         controller: 'FinanceCtrl',
-        controllerAs: 'Ctrl'
+        controllerAs: 'Ctrl',
+        requireAuth: true
       })
       .when('/finance/:id', {
         templateUrl: 'views/finance-single.html',
         controller: 'FinanceSingleCtrl',
-        controllerAs: 'Ctrl'
+        controllerAs: 'Ctrl',
+        requireAuth: true
       })
       .otherwise({
         redirectTo: '/login'
@@ -424,7 +460,7 @@ angular.module('eCommerceAdminApp')
  * Controller of the eCommerceAdminApp
  */
 angular.module('eCommerceAdminApp')
-  .controller('CategoriesCtrl', ["Category", function (Category) {
+  .controller('CategoriesCtrl', ["Category", "$scope", function (Category, $scope) {
     var _this = this;
     _this.title = "View Categories";
     Category.getAllCategories({}, {},function(data) {
@@ -470,6 +506,16 @@ angular.module('eCommerceAdminApp')
         }
       });
     }
+    $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
+      $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": true,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false
+      });
+    });
   }]);
 
 'use strict';
@@ -1317,6 +1363,7 @@ angular.module('eCommerceAdminApp')
         _this._t_s_banner = _this.configuration[type][index];
       else
           _this.images = _this.configuration[type][index];
+          $('html, body').animate({scrollTop: 0},600);
     };
     _this.deleteBanner = function(index, type) {
       _this.configuration[type].splice(index, 1);
@@ -1454,8 +1501,17 @@ angular.module('eCommerceAdminApp')
         _this.configuration.ships_in.push(_this.ships_in);
       _this.ships_in = "";
     };
+    _this.addSocialLinks = function() {
+      if (_this.configuration.social_links.indexOf(_this.social_links) === -1)
+        _this.configuration.social_links.push(_this.social_links);
+      _this.social_links = "";
+    };
+    _this.removeSocialLinks = function(index) {
+      _this.configuration.social_links.splice(index, 1);
+    };
     _this.saveConfiguration = function() {
       var configuration = angular.copy(_this.configuration);
+      configuration.overall_banner =configuration.overall_banner._id;
       siteConfiguration.saveConfiguration({}, configuration, function(data) {
         if (data.status == "success") {
           _this.notify = {
@@ -1906,15 +1962,15 @@ angular.module('eCommerceAdminApp')
         alertData: "="
       },
       replace: true,
-      link: function(scope, element, attrs){
-        scope.$watch("scope.alertData", function(value) {
-          alert();
-          $timeout(function(){
+      link: function(scope, element, attrs) {
+        scope.$watch("alertData", function(nValue) {
+          if(nValue && nValue.message != "") {
+            $timeout(function() {
               scope.alertData = {};
-          }, 3000);
-      });
-
-     }
+            }, 2000);
+          }
+        });
+      }
     };
   }])
   .directive('onFinishRender', function($timeout) {
@@ -2062,6 +2118,7 @@ angular.module('eCommerceAdminApp')
         ck.on('instanceReady', function() {
           ck.setData(ngModel.$viewValue);
         });
+
         function updateModel() {
           scope.$apply(function() {
             ngModel.$setViewValue(ck.getData());
@@ -2150,19 +2207,19 @@ angular.module('eCommerceAdminApp')
  * Factory in the eCommerceAdminApp.
  */
 angular.module('eCommerceAdminApp')
-  .factory('sessionService', function() {
+  .factory('sessionService', ['$cookieStore', function($cookieStore) {
     return {
       set: function(key, value) {
-        return sessionStorage.setItem(key, value);
+        return $cookieStore.put(key, value);
       },
       get: function(key) {
-        return sessionStorage.getItem(key);
+        return $cookieStore.get(key);
       },
       destroy: function(key) {
-        return sessionStorage.removeItem(key);
+        return $cookieStore.remove(key);
       }
     };
-  })
+  }])
 
 'use strict';
 

@@ -8,7 +8,7 @@
  * Controller of the eCommerceAdminApp
  */
 angular.module('eCommerceAdminApp')
-  .controller('CategoriesCtrl', ["Category", function (Category) {
+  .controller('CategoriesCtrl', ["Category", "$scope", function (Category, $scope) {
     var _this = this;
     _this.title = "View Categories";
     Category.getAllCategories({}, {},function(data) {
@@ -54,4 +54,14 @@ angular.module('eCommerceAdminApp')
         }
       });
     }
+    $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
+      $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": true,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false
+      });
+    });
   }]);

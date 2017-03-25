@@ -33,6 +33,7 @@
             <form role="form" ng-submit="Ctrl.saveEmailTemplates()" name="myForm">
               <div class="box-body">
                 <form-input label="Email Template Name" required name="name" model="Ctrl.emailtemplate.name"></form-input>
+                <form-input label="Subject" required name="name" model="Ctrl.emailtemplate.subject"></form-input>
                 <text-area label="Email Template Description" model="Ctrl.emailtemplate.description"></text-area>
                 <div class="form-group">
                   <teaxtarea class="form-control"  ck-editor="" ng-model="Ctrl.emailtemplate.content"></textarea>

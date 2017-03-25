@@ -36,6 +36,7 @@
                     <th>User Name</th>
                     <th>Email</th>
                     <th>Status</th>
+                    <th>Verified</th>
                     <th>User Type</th>
                     <th>Action</th>
                   </tr>
@@ -54,6 +55,14 @@
                     <td>{{user.name}}</td>
                     <td>{{user.email}}</td>
                     <td>{{user.status == 1 ? "Active" : "Inactive"}}</td>
+                    <td>
+                      <div ng-if="user.verified===true">
+                      Verified
+                   </div>
+                   <div ng-if="user.verified===false">
+                      <span style="color:red;">Not Verified</span>
+                   </div>
+                    </td>
                     <td>
                       <b ng-repeat="role in user.roles">{{role}}{{$last ? '' : ', '}}</b>
                     </td>

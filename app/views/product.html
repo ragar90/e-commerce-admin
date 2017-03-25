@@ -17,7 +17,12 @@
         <li class="active">Dashboard</li>
       </ol>
     </section>
-
+    <style>
+      .box-body
+      {
+        overflow-x:scroll;
+      }
+    </style>
     <!-- Main content -->
     <section class="content">
       <div class="row">
@@ -32,19 +37,34 @@
               <table id="example2" class="table table-bordered table-hover">
                 <thead>
                   <tr>
-                    <th>Product Name</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Added By</th>
                     <th>SKU</th>
-                    <th>Quantity</th>
-                    <th>Product Status</th>
+                    <th>Remaining</th>
+                    <th>Status</th>
+                    <th>Created On</th>
                     <th>Action</th>
                   </tr>
+                  <!-- <tr>
+                    <td><input type="text" ng-model="Ctrl.search.title"></td>
+                    <td><input type="text" ng-model="Ctrl.search.pricing"></td>
+                    <td><input type="text" ng-model="Ctrl.search.created_by.name"></td>
+                    <td><input type="text" ng-model="Ctrl.search.sku"></td>
+                    <td><input type="text" ng-model="Ctrl.search.quantity"></td>
+                    <td><input type="text" ng-model="Ctrl.search.status"></td>
+                    <td><input type="text" ng-model="Ctrl.search.created_at"></td>
+                  </tr> -->
                 </thead>
                 <tbody>
-                  <tr ng-repeat="product in ProdC.product_list" on-finish-render="ngRepeatFinished">
+                  <tr ng-repeat="product in ProdC.product_list | filter:Ctrl.search" on-finish-render="ngRepeatFinished">
                     <td>{{product.title}}</td>
+                    <td>Original :{{product.pricing.original}}<br/> After Discount:{{product.pricing.after_discount}}<br/> Service Tax:{{product.pricing.service_tax}}<br/> Commision:{{product.pricing.commission}} </td>
+                    <td>{{product.created_by.name}}</td>
                     <td>{{product.sku}}</td>
                     <td>{{product.quantity}}</td>
                     <td>{{product.status == 1 ? "Active" : "Inactive"}}</td>
+                    <td><p ng-bind="product.created_at | date:'MM/dd/yyyy HH:mm:ss'"></p></td>
                     <td>
                       <edit-button href="#/product/{{product._id}}" title="Edit Product"></edit-button>
                       <a href="javascript:void(0)" ng-click="ProdC.updateStatus(product._id, !product.status, $index)" title="Update Product Status">
@@ -56,10 +76,13 @@
                 </tbody>
                 <tfoot>
                   <tr>
-                    <th>Product Name</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Added By</th>
                     <th>SKU</th>
-                    <th>Quantity</th>
-                    <th>Product Status</th>
+                    <th>Remaining</th>
+                    <th>Status</th>
+                    <th>Created On</th>
                     <th>Action</th>
                   </tr>
                 </tfoot>

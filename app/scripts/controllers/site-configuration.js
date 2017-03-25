@@ -37,6 +37,7 @@ angular.module('eCommerceAdminApp')
         _this._t_s_banner = _this.configuration[type][index];
       else
           _this.images = _this.configuration[type][index];
+          $('html, body').animate({scrollTop: 0},600);
     };
     _this.deleteBanner = function(index, type) {
       _this.configuration[type].splice(index, 1);
@@ -174,8 +175,17 @@ angular.module('eCommerceAdminApp')
         _this.configuration.ships_in.push(_this.ships_in);
       _this.ships_in = "";
     };
+    _this.addSocialLinks = function() {
+      if (_this.configuration.social_links.indexOf(_this.social_links) === -1)
+        _this.configuration.social_links.push(_this.social_links);
+      _this.social_links = "";
+    };
+    _this.removeSocialLinks = function(index) {
+      _this.configuration.social_links.splice(index, 1);
+    };
     _this.saveConfiguration = function() {
       var configuration = angular.copy(_this.configuration);
+      configuration.overall_banner =configuration.overall_banner._id;
       siteConfiguration.saveConfiguration({}, configuration, function(data) {
         if (data.status == "success") {
           _this.notify = {

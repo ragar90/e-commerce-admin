@@ -16,6 +16,11 @@
         <li class="active">Dashboard</li>
       </ol>
     </section>
+    <style>
+      .box-body {
+        overflow-x: scroll;
+      }
+    </style>
 
     <!-- Main content -->
     <section class="content">
@@ -25,6 +30,7 @@
           <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">{{Ctrl.title}}</h3>
+              <h5>All your transactions,amount you owe to sellers,their commision will be displayed here.</h5>
               <div class="pull-right box-tools">
                 <button type="button" class="btn btn-primary btn-sm pull-right" data-widget="collapse" data-toggle="tooltip" title="" style="margin-right: 5px;" data-original-title="Collapse">
                   <i class="fa fa-minus"></i></button>
@@ -38,7 +44,7 @@
                   <tr>
                     <td>Seller Name</td>
                     <td>Seller Email</td>
-                    <td>Seller Phone</td>
+
                     <td>Total Orders</td>
                     <td>Price</td>
                     <td>Commission</td>
@@ -47,11 +53,21 @@
                     <td>Payable</td>
                   </tr>
                   <tr>
-                    <td><input type="text" ng-model="Ctrl.search.seller_name"></td>
-                    <td><input type="text" ng-model="Ctrl.search.seller_email"></td>
-                    <td><input type="text" ng-model="Ctrl.search.seller_phone"></td>
-                    <td><input type="text" ng-model="Ctrl.search.order_count"></td>
-                    <td><input type="text" ng-model="Ctrl.search.price"></td>
+                    <td>
+                      <input type="text" ng-model="Ctrl.search.seller_name">
+                    </td>
+                    <td>
+                      <input type="text" ng-model="Ctrl.search.seller_email">
+                    </td>
+
+                    <td>
+                      <input type="text" ng-model="Ctrl.search.order_count">
+                    </td>
+                    <td>
+                      <input type="text" ng-model="Ctrl.search.price">
+                    </td>
+                    <td></td>
+                    <td></td>
                     <td></td>
                     <td></td>
                   </tr>
@@ -64,13 +80,18 @@
                       </a>
                     </td>
                     <td>{{transaction.seller_email}}</td>
-                    <td>{{transaction.seller_phone}}</td>
+
                     <td>{{transaction.order_count}}</td>
                     <td>{{transaction.price}}</td>
-                    <td>{{transaction.commission_amount}}</td>
+                    <td>{{transaction.commission_amount| number}}</td>
                     <td>{{transaction.paid_out_amount}}</td>
-                    <td>{{transaction.refund_amount}}</td>
-                    <td>{{transaction.payable_amount}}</td>
+                    <td>
+                      <a href="#/finance/{{transaction._id}}">
+                      {{transaction.refund_amount}}&nbsp;/&nbsp;
+                      Edit
+                    </a>
+                    </td>
+                    <td>{{transaction.payable_amount| number}}</td>
 
                   </tr>
                 </tbody>
@@ -78,7 +99,7 @@
                   <tr>
                     <td>Seller Name</td>
                     <td>Seller Email</td>
-                    <td>Seller Phone</td>
+
                     <td>Total Orders</td>
                     <td>Price</td>
                     <td>Commission</td>

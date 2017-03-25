@@ -67,6 +67,50 @@
                   </div>
                 </div>
                 <div class="form-group">
+                  <label for="ships_in">Social Links</label>
+                  <!-- <div class="col-md-12">
+                    <div class="col-md-4">
+                      <input type="text" class="form-control" ng-model="Ctrl.social_links.name" placeholder="Name" />
+                    </div>
+                    <div class="col-md-4">
+                      <input type="text" class="form-control" ng-model="Ctrl.social_links.url" placeholder="Url" />
+                    </div>
+                    <div class="col-md-4">
+                      <label for="ships_in">&nbsp;</label>
+                      <button type="button" class="btn btn-primary" ng-click="Ctrl.addSocialLinks()" ng-disabled="!Ctrl.social_links.name || !Ctrl.social_links.url">+</button>
+                    </div>
+                  </div> -->
+                  <div class="col-md-12 padded" ng-repeat="val in Ctrl.configuration.social_links | unique">
+                    <div class="col-md-4">
+                      <input type="text" class="form-control" ng-model="val.name" placeholder="Name" readonly=""/>
+                    </div>
+                    <div class="col-md-4">
+                      <input type="text" class="form-control" ng-model="val.url" placeholder="Url" />
+                    </div>
+                    <div class="col-md-4">
+                      <label for="ships_in">&nbsp;</label>
+                      <!-- <button type="button" class="btn btn-danger" ng-click="Ctrl.removeSocialLinks($index)">X</button> -->
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="ships_in">Payment Gateway</label>
+                  <div class="col-md-12">
+                    <div class="col-md-3">
+                      <input type="text" class="form-control" ng-model="Ctrl.configuration.payment_gateway[0].name" placeholder="Name" />
+                    </div>
+                    <div class="col-md-3">
+                      <input type="text" class="form-control" ng-model="Ctrl.configuration.payment_gateway[0].email" placeholder="Email" />
+                    </div>
+                    <div class="col-md-3">
+                      <select class="form-control" ng-model="Ctrl.configuration.payment_gateway[0].mode">
+                        <option value="sandbox" selected="">Sand Box</option>
+                        <option value="live">Live</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
                   <label for="units">Units</label>
                   <div class="col-md-12">
                     <div class="col-md-8">
@@ -91,9 +135,28 @@
                   <div class="btn btn-default" ng-model="file" ngf-select="Ctrl.imageUpload($file, 'fav_icon')" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB" ngf-resize="{width: 1920, height: 800}">Upload Fav Icon</div>
                   <img src="{{Ctrl.configuration.fav_icon.url}}" height="100" width="100"/>
                 </div>
+                <div class="progress progress-sm active">
+                  <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="{{Ctrl.fav_iconProgressPercentage}}" aria-valuemin="0" aria-valuemax="100" style="width: {{Ctrl.fav_iconProgressPercentage}}%">
+                    <span class="sr-only"></span>
+                  </div>
+                </div>
                 <div class="form-group">
                   <div class="btn btn-default" ng-model="file" ngf-select="Ctrl.imageUpload($file, 'site_logo')" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB" ngf-resize="{width: 1920, height: 800}">Site Logo</div>
                   <img src="{{Ctrl.configuration.site_logo.url}}" height="100" width="100"/>
+                </div>
+                <div class="progress progress-sm active">
+                  <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="{{Ctrl.site_logoProgressPercentage}}" aria-valuemin="0" aria-valuemax="100" style="width: {{Ctrl.site_logoProgressPercentage}}%">
+                    <span class="sr-only"></span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="btn btn-default" ng-model="file" ngf-select="Ctrl.imageUpload($file, 'overall_banner')" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB" ngf-resize="{width: 1920, height: 800}">Over All Banner</div>
+                  <img src="{{Ctrl.configuration.overall_banner.url}}" height="100" width="100"/>
+                </div>
+                <div class="progress progress-sm active">
+                  <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="{{Ctrl.overall_bannerProgressPercentage}}" aria-valuemin="0" aria-valuemax="100" style="width: {{Ctrl.overall_bannerProgressPercentage}}%">
+                    <span class="sr-only"></span>
+                  </div>
                 </div>
               </div>
               <!-- /.box-body -->
